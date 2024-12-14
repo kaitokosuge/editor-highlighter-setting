@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import CodeTool from "@editorjs/code";
 import EditorJS from "@editorjs/editorjs";
-
+import hljs from "highlight.js";
+import parse from "html-react-parser";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 export default function Edit() {
 	const [quizText, setQuizText] = useState("[]");
 	const handleQuizText = (editor: EditorJS) => {
@@ -66,11 +69,20 @@ export default function Edit() {
 					<div key={index}>
 						{item.type === "code" ? (
 							<>
-								<pre className="text-blue-600 bg-black">{item.data.code}</pre>
+								<pre className="bg-black">
+									<SyntaxHighlighter language="typescript" style={atomOneDark}>
+										{item.data.code}
+									</SyntaxHighlighter>
+									{/* {parse(
+										hljs.highlight(`${item.data.code}`, {
+											language: "TypeScript",
+										}).value
+									)} */}
+								</pre>
 							</>
 						) : (
 							<>
-								<div>{item.data.text}</div>
+								<div className="bg-slate-500">{item.data.text}</div>
 							</>
 						)}
 					</div>
