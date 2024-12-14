@@ -55,7 +55,7 @@ export default function Edit() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isMounted]);
 	return (
-		<div>
+		<div className="text-white">
 			<div id="question" className="min-h-[700px] bg-black"></div>
 			<div id="explanation" className="min-h-[700px] bg-black"></div>
 			<div>
@@ -66,7 +66,7 @@ export default function Edit() {
 					<div key={index}>
 						{item.type === "code" ? (
 							<>
-								<div className="text-blue-600 bg-black">{item.data.code}</div>
+								<pre className="text-blue-600 bg-black">{item.data.code}</pre>
 							</>
 						) : (
 							<>
