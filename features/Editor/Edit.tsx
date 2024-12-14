@@ -59,8 +59,8 @@ export default function Edit() {
 	}, [isMounted]);
 	return (
 		<div className="text-white">
-			<div id="question" className="min-h-[700px] bg-black"></div>
-			<div id="explanation" className="min-h-[700px] bg-black"></div>
+			<div id="question" className="min-h-[200px] bg-black"></div>
+			{/* <div id="explanation" className="min-h-[700px] bg-black"></div> */}
 			<div>
 				{/* {JSON.stringify(quizText).map((item) => (
 					<div>{item}</div>
