@@ -8,8 +8,12 @@ export default function Edit() {
 		editor.save().then((outputData: unknown) => {
 			const strData = JSON.stringify(outputData);
 			setQuizText(strData);
+			setRawText(outputData);
 		});
 	};
+	const [rawText, setRawText] = useState({ blocks: [] });
+	console.log("quiztextです", quizText);
+	console.log("onj quiztextです", JSON.parse(quizText));
 	const ref = useRef<EditorJS | undefined>(null);
 	const [isMounted, setIsMounted] = useState<boolean>(false);
 	useEffect(() => {
@@ -54,7 +58,24 @@ export default function Edit() {
 		<div>
 			<div id="question" className="min-h-[700px] bg-black"></div>
 			<div id="explanation" className="min-h-[700px] bg-black"></div>
-			<div></div>
+			<div>
+				{/* {JSON.stringify(quizText).map((item) => (
+					<div>{item}</div>
+				))} */}
+				{rawText.blocks.map((item, index: number) => (
+					<div key={index}>
+						{item.type === "code" ? (
+							<>
+								<div className="text-blue-600 bg-black">{item.data.code}</div>
+							</>
+						) : (
+							<>
+								<div>{item.data.text}</div>
+							</>
+						)}
+					</div>
+				))}
+			</div>
 		</div>
 	);
 }
